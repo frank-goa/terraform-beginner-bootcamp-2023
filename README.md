@@ -6,3 +6,4 @@
 - **MAJOR**
 - **MINIR**
 - **PATCH**
+
