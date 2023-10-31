@@ -25,6 +25,7 @@ provider "random" {
 
 provider "aws" {
   # Configuration options
+  region = "us-east-1"
 }
 
 resource "random_string" "bucket_name" {
