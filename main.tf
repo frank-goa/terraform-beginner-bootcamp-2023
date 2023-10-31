@@ -9,6 +9,14 @@ terraform {
       version = "5.23.1"
     }
   }
+
+  cloud {
+    organization = "my_cloud_journey"
+
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
 }
 
 provider "random" {

@@ -52,3 +52,11 @@ terraform apply --auto-approve
 
 - Changed the main.tf file to include AWS Provider
 - Checked if everything is working
+
+
+#### Migrating Terraform state files to Terraform Cloud
+- Created API token
+- Created env variables in Terraform Cloud
+- Need to have proper AWS credentials in our local environment
+- Created new project
+- Created new workspace in our project
