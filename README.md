@@ -48,3 +48,7 @@ terraform apply --auto-approve
 ```
 
 
+#### Created and Destryed AWS S3 Bucket
+
+- Changed the main.tf file to include AWS Provider
+- Checked if everything is working
