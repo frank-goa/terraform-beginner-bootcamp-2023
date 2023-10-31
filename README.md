@@ -7,3 +7,44 @@
 - **MINIR**
 - **PATCH**
 
+
+### Generating Random Name as our Bucket Name:
+
+- Created and edited the main.tf file
+- add Random Terraform provider
+
+```terraform
+terraform {
+  required_providers {
+    random = {
+      source = "hashicorp/random"
+      version = "3.5.1"
+    }
+  }
+}
+
+provider "random" {
+  # Configuration options
+}
+
+resource "random_string" "bucket_name" {
+  length = 16
+  special = false
+  lower = true
+  upper = false
+}
+
+output "random_bucket_name" {
+  value = random_string.bucket_name.id
+}
+```
+
+- commands used
+
+```bash
+terraform init
+terraform plan
+terraform apply --auto-approve
+```
+
+
