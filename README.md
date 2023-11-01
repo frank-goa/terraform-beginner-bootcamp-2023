@@ -1,70 +1,12 @@
 # Terraform Beginner Bootcamp 2023
 
-## Table of Contents
+![Terraform_bootcamp_2023](Terraform_Cloud_Bootcamp_2023.jpeg)
 
-- [Semantec Versioning](#semantic-versioning-mage)
-- [Generate Randon name](#generating-random-name-as-our-bucket-name)
-- [Create / Destroy S3 bucket](#created-and-destryed-aws-s3-bucket)
-- [Migrating Terraform state files](#migrating-terraform-state-files-to-terraform-cloud)
+## Weekly Journals
 
+- [Week 0 Journal](journal/week-0.md)
+- [Week 1 Journal](journal/week-1.md)
 
-## Semantic Versioning :mage:
+## Extras
 
-[semver.org](https://semver.org/)
-- **MAJOR**
-- **MINIR**
-- **PATCH**
-
-
-### Generating Random Name as our Bucket Name:
-
-- Created and edited the main.tf file
-- add Random Terraform provider
-
-```terraform
-terraform {
-  required_providers {
-    random = {
-      source = "hashicorp/random"
-      version = "3.5.1"
-    }
-  }
-}
-
-provider "random" {
-  # Configuration options
-}
-
-resource "random_string" "bucket_name" {
-  length = 16
-  special = false
-  lower = true
-  upper = false
-}
-
-output "random_bucket_name" {
-  value = random_string.bucket_name.id
-}
-```
-
-- commands used
-
-```bash
-terraform init
-terraform plan
-terraform apply --auto-approve
-```
-
-
-#### Created and Destryed AWS S3 Bucket
-
-- Changed the main.tf file to include AWS Provider
-- Checked if everything is working
-
-
-#### Migrating Terraform state files to Terraform Cloud
-- Created API token
-- Created env variables in Terraform Cloud
-- Need to have proper AWS credentials in our local environment
-- Created new project
-- Created new workspace in our project
+- [GitHub Markdown TOC Generator](https://ecotrust-canada.github.io/markdown-toc/)
