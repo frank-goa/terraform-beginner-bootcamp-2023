@@ -35,9 +35,6 @@ resource "random_string" "bucket_name" {
   upper = false
 }
 
-output "random_bucket_name" {
-  value = random_string.bucket_name.id
-}
 
 resource "aws_s3_bucket" "example" {
   bucket = random_string.bucket_name.id
@@ -45,5 +42,6 @@ resource "aws_s3_bucket" "example" {
   tags = {
     Name        = "My TF bucket"
     Environment = "TF_environment"
+    User_UUID = var.user_uuid
   }
 }
