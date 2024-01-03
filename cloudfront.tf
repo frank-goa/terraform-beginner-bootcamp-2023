@@ -1,10 +1,10 @@
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_origin_access_control
 resource "aws_cloudfront_origin_access_control" "default" {
-  name  = "OAC ${var.bucket_name}"
-  description  = "Origin Access Control for Static Website Hosting ${var.bucket_name}"
+  name                              = "OAC ${var.bucket_name}"
+  description                       = "Origin Access Control for Static Website Hosting ${var.bucket_name}"
   origin_access_control_origin_type = "s3"
-  signing_behavior  = "always"
-  signing_protocol  = "sigv4"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
 }
 
 

@@ -1,8 +1,8 @@
 terraform {
   required_providers {
-    
+
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "5.23.1"
     }
   }
@@ -17,9 +17,9 @@ terraform {
 }
 
 module "template_files" {
-    source = "hashicorp/dir/template"
+  source = "hashicorp/dir/template"
 
-    base_dir = "${path.module}/public"
+  base_dir = "${path.module}/public"
 }
 
 provider "aws" {
@@ -29,12 +29,12 @@ provider "aws" {
 
 
 resource "aws_s3_bucket" "tf-website-bucket" {
-  bucket =  var.bucket_name
+  bucket = var.bucket_name
 
   tags = {
     Name        = "My TF bucket"
     Environment = "TF_environment"
-    User_UUID = var.user_uuid
+    User_UUID   = var.user_uuid
   }
 }
 
@@ -57,9 +57,9 @@ resource "aws_s3_bucket_website_configuration" "website_configuration" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object
 # https://developer.hashicorp.com/terraform/language/expressions/references
 resource "aws_s3_object" "index" {
-  bucket = aws_s3_bucket.tf-website-bucket.bucket
-  key    = "index.html"
-  source = "${path.root}/public/index.html"
+  bucket       = aws_s3_bucket.tf-website-bucket.bucket
+  key          = "index.html"
+  source       = "${path.root}/public/index.html"
   content_type = "text/html"
 
   # The filemd5() function is available in Terraform 0.11.12 and later
@@ -67,16 +67,16 @@ resource "aws_s3_object" "index" {
   # etag = "${md5(file("path/to/file"))}"
   etag = filemd5("${path.root}/public/index.html")
   lifecycle {
-    replace_triggered_by = [ terraform_data.content_version.output ]
-    ignore_changes = [ etag ]
+    replace_triggered_by = [terraform_data.content_version.output]
+    ignore_changes       = [etag]
   }
-  
+
 }
 
 resource "aws_s3_object" "error" {
-  bucket = aws_s3_bucket.tf-website-bucket.bucket
-  key    = "error.html"
-  source = "${path.root}/public/error.html"
+  bucket       = aws_s3_bucket.tf-website-bucket.bucket
+  key          = "error.html"
+  source       = "${path.root}/public/error.html"
   content_type = "text/html"
 
   # The filemd5() function is available in Terraform 0.11.12 and later
@@ -84,10 +84,10 @@ resource "aws_s3_object" "error" {
   # etag = "${md5(file("path/to/file"))}"
   etag = filemd5("${path.root}/public/index.html")
   lifecycle {
-    replace_triggered_by = [ terraform_data.content_version.output ]
-    ignore_changes = [ etag ]
+    replace_triggered_by = [terraform_data.content_version.output]
+    ignore_changes       = [etag]
   }
-  
+
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity
